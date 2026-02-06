@@ -1,11 +1,11 @@
 ARG BASE_IMAGE=ubuntu:22.04
-
 FROM ${BASE_IMAGE}
-
 ARG WARP_VERSION
-ARG GOST_VERSION
+ARG GOST_VERSION=3.0.0
 ARG COMMIT_SHA
 ARG TARGETPLATFORM
+# Optional but recommended: fail fast if empty
+RUN test -n "${GOST_VERSION}" || (echo "GOST_VERSION is empty" && exit 1)
 
 LABEL org.opencontainers.image.authors="cmj2002"
 LABEL org.opencontainers.image.url="https://github.com/cmj2002/warp-docker"
